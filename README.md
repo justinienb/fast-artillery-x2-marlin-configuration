@@ -1,9 +1,11 @@
-# Fast Artillery Sidewinder X2 Marlin Configuration Files
-[![Marlin Repo](https://img.shields.io/github/v/release/MarlinFirmware/Marlin?label=%20Marlin%20Version)](https://github.com/MarlinFirmware/Marlin/tree/release-2.1.3-beta1)
+<h1 align="center">Fast Artillery Sidewinder X2 Marlin Configuration Files</h1>
 
-## General Description
+<p align="center">
+    <a href="https://github.com/MarlinFirmware/Marlin/tree/release-2.1.3-beta1"><img alt="Last Release Date" src="https://img.shields.io/badge/Marlin%20firmware-v2.1.3--b1-blue"></a>
+   <a href="https://github.com/MarlinFirmware/Configurations"><img alt="Last Release Date" src="https://img.shields.io/badge/Marlin%20configuration-v2.1.3--b1-blue"></a>
+</p>
 
-This repository contains two Marlin configuration files for the Artillery Sidewinder X2 3D printer. The configuration is tweaked for fast feedrates during probing and homing and enables the latest features of [`Marlin v2.1.3-beta1`](https://github.com/MarlinFirmware/Marlin/tree/release-2.1.3-beta1) that are relevant for the Sidewinder X2 3D printer.
+This repository contains two Marlin configuration files for the Artillery Sidewinder X2 3D printer. The configuration is tweaked for fast feedrates during probing and homing and enables the latest fixes and features of [`Marlin v2.1.3-b1`](https://github.com/MarlinFirmware/Marlin/tree/release-2.1.3-beta1) that are relevant for the Sidewinder X2 3D printer.
 
 ## Configuration
 
@@ -12,9 +14,9 @@ This repository contains two Marlin configuration files for the Artillery Sidewi
 The base file used is the **Artillery Sidewinder X2 example** from the official Marlin Configurations repository:  
 [`Configurations/config/examples/Artillery/Sidewinder X2`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1/config/examples/Artillery/Sidewinder%20X2).
 
-This configuration is based on the branch: [`release-2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1).
+This configuration is based on the branch: [`release-2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1) of the Marlin firmware configuration repository.
 
-### Based On 
+### Based on 
 
 This configuration is based on [markrossington's work](https://github.com/markrossington/sidewinder-x2-marlin).  
 His repository includes a [table of changes](https://github.com/markrossington/sidewinder-x2-marlin?tab=readme-ov-file#new-features-vs-stock) that describes all the modifications made from the [official Artillery version](https://github.com/artillery3d/sidewinder-x2-firmware)
@@ -41,7 +43,7 @@ His repository includes a [table of changes](https://github.com/markrossington/s
 | Configuration.h           | `PROBE_OFFSET_ZMIN`           | -2.5                          | -3                        | Keep the sensitive probe away from the bed.                                                                                                       |
 | Configuration.h           | `PROBE_OFFSET_ZMAX`           | 2.5                           | 3                         | To keep the interval symmetrical around 0.                                                                                                        |
 
-> **Note 1**: I've retained `EXPERIMENTAL_SCURV` but the new version [`release-2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1) has removed it. No deprecated warning generated when building marlin, TBD if they still have any effect.  
+> **Note 1**: I've retained `EXPERIMENTAL_SCURV` but the new version [`v2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1) has removed it. No deprecated warning generated when building marlin, TBD if they still have any effect.  
 > **Note 2**: The NOZZLE_TO_PROBE_OFFSET and setting in `Configuration.h` has been tweaked to my setup. you will need to adjust it before building Marlin. Alternatively, you can update the offset after flashing the firmware using the `M851` G-code command.
 
 ---
@@ -59,4 +61,4 @@ His repository includes a [table of changes](https://github.com/markrossington/s
 4. *(Optional)* **Adjust the probe offset**:  
    Update the `NOZZLE_TO_PROBE_OFFSET` setting in `Configuration.h` for your setup (or change it later using the `M851` G-code command).  
 5. **Compile the firmware** using the [Auto Build Marlin](https://marlinfw.org/docs/basics/auto_build_marlin.html) extension and the [PlatformIO](https://platformio.org/install/ide?install=vscode) plugin for VS Code.
-6. **Flash the firmware** onto your printer. I recommend following [this guide]([https://www.lesimprimantes3d.fr/forum/topic/44697-tuto-comment-flasher-le-firmware-des-x2-genius-pro-hornet/](https://github.com/markrossington/sidewinder-x2-marlin/blob/main/flashing.md)) Alternatively, you can try the PlatformIO upload feature, but it may not work reliably for STM32-based printers.
+6. **Flash the firmware** onto your printer. I recommend following [this guide](https://github.com/markrossington/sidewinder-x2-marlin/blob/main/flashing.md) Alternatively, you can try the PlatformIO upload feature, but it may not work reliably for STM32-based printers.
