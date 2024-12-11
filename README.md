@@ -1,4 +1,5 @@
 # Fast Artillery Sidewinder X2 Marlin Configuration Files
+[![Marlin Repo](https://img.shields.io/github/v/release/MarlinFirmware/Marlin?label=%20Marlin%20Version)](https://github.com/MarlinFirmware/Marlin/tree/release-2.1.3-beta1)
 
 ## General Description
 
