@@ -15,27 +15,33 @@ This configuration is based on the branch: [`release-2.1.3-b1`](https://github.c
 
 ### Based On 
 
-This configuration is heavily inspired by [markrossington's work](https://github.com/markrossington/sidewinder-x2-marlin).  
+This configuration is based on [markrossington's work](https://github.com/markrossington/sidewinder-x2-marlin).  
 His repository includes a [table of changes](https://github.com/markrossington/sidewinder-x2-marlin?tab=readme-ov-file#new-features-vs-stock) that describes all the modifications made from the [official Artillery version](https://github.com/artillery3d/sidewinder-x2-firmware)
 
-> **Note**: I've retained `EXPERIMENTAL_SCURV` and `ALLOW_LOW_EJERK` settings from markrossington's configuration files, but the new version [`release-2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1) has removed them. TBD if they still have any effect.
 
 ---
 
-## Changes
+## My Changes
 
-- **Porting** markrossington's configuration, made for Marlin V2.1.2, to Marlin V2.1.3-1b.  
-- **Disabling** markrossington's `Z_STEPPER_AUTO_ALIGN` as the X2 Z-axis is driven by two stepper motors connected by a belt, effectively syncing their movement. In this scenario, enabling `Z_STEPPER_AUTO_ALIGN` can cause problems with the belt and is not needed.  
-- **Enabling** `BLTOUCH_HS_MODE` (High-Speed mode) for the official BLTouch (a common upgrade for this printer) in `Configuration_adv.h`.  
-- **Setting** `MULTIPLE_PROBING` to 2 to increase accuracy lost due to HS Mode and high feedrates.  
-- **Increasing** `XY_PROBE_FEEDRATE` from 133mm/s to 150mm/s in `Configuration.h`.  
-- **Increasing** `Z_PROBE_FEEDRATE_FAST` from 10mm/s to 30mm/s (this setting adjusts the Z feedrate for the first approach when `MULTIPLE_PROBING == 2`) in `Configuration.h`.  
-- **Decreasing** `Z_CLEARANCE_DEPLOY_PROBE` from 10mm to 5mm to reduce travel time.  
-- **Decreasing** `Z_CLEARANCE_BETWEEN_PROBES` and `Z_CLEARANCE_MULTI_PROBE` from 5mm to 3mm.
-- **Decreasing** `BLTOUCH_HS_EXTRA_CLEARANCE` from 7mm to 5mm in `Configuration_adv.h`.  
-- **Increasing** `HOMING_FEEDRATE_MM_M` from 100mm/s to 150mm/s for the XY axis and from 25mm/s to 30mm/s for the Z-axis (same feedrate for every function) in `Configuration.h`.
+| File                      | Setting                       | Old Value                     | New Value                 | Details                                                                                                                                           |
+|---------------------------|-------------------------------|-------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------                |
+| Both configuration files  | Marlin Version                | V2.1.2                        | V2.1.3-1b                 | Updated MarkRossington's configuration files to the newer Marlin version, ensuring compatibility with the latest features and changes.            |
+| Configuration_adv.h       | `Z_STEPPER_AUTO_ALIGN`        | Enabled                       | Disabled                  | Disabled MarkRossington setting, X2 Z-axis uses a belt to sync two stepper motors, making this setting unnecessary and potentially problematic.   |
+| Configuration_adv.h       | `ALLOW_LOW_EJERK`             | Enabled                       | Removed                   | Removed MarkRossington setting, it is now deprecated in `Marlin v2.1.3-beta1`                                                                     |
+| Configuration_adv.h       | `BLTOUCH_HS_MODE`             | Disabled                      | Enabled                   | Enables High-Speed mode for the BLTouch, speeding up automatic bed leveling (ABL).                                                                |
+| Configuration.h           | `MULTIPLE_PROBING`            | 1                             | 2                         | Increases probing accuracy, compensating for losses due to High-Speed mode and high feedrates.                                                    |
+| Configuration.h           | `HOMING_FEEDRATE_MM_M`        | 100mm/s (XY), 25mm/s (Z)      | 150mm/s (XY), 30mm/s (Z)  | Increases homing speed for all axes.                                                                                                              |
+| Configuration.h           | `XY_PROBE_FEEDRATE`           | 133mm/s                       | 150mm/s                   | Adjusts the XY feedrate during probing to match faster speeds.                                                                                    |
+| Configuration.h           | `Z_PROBE_FEEDRATE_FAST`       | 10mm/s                        | 30mm/s                    | Speeds up the Z-axis feedrate for the first approach when `MULTIPLE_PROBING` is set to 2.                                                         |
+| Configuration.h           | `Z_CLEARANCE_DEPLOY_PROBE`    | 10mm                          | 5mm                       | Reduces travel time by lowering the clearance required to deploy the probe.                                                                       |
+| Configuration.h           | `Z_CLEARANCE_BETWEEN_PROBES`  | 5mm                           | 3mm                       | Reduces clearance between probe points for faster probing.                                                                                        |
+| Configuration.h           | `Z_CLEARANCE_MULTI_PROBE`     | 5mm                           | 3mm                       | Reduces clearance during multiple probe operations to save time.                                                                                  |
+| Configuration_adv.h       | `BLTOUCH_HS_EXTRA_CLEARANCE`  | 7mm                           | 5mm                       | Lowers extra clearance for BLTouch High-Speed mode to save time.                                                                                  |
+| Configuration.h           | `PROBE_OFFSET_ZMIN`           | -2.5                          | -3                        | Keep the sensitive probe away from the bed.                                                                                                       |
+| Configuration.h           | `PROBE_OFFSET_ZMAX`           | 2.5                           | 3                         | To keep the interval symmetrical around 0.                                                                                                        |
 
-> **Note**: The NOZZLE_TO_PROBE_OFFSET setting in `Configuration.h` has been tweaked to my setup. you will need to adjust it building Marlin. Alternatively, you can update the offset after flashing the firmware using the `M851` G-code command.
+> **Note 1**: I've retained `EXPERIMENTAL_SCURV` but the new version [`release-2.1.3-b1`](https://github.com/MarlinFirmware/Configurations/tree/release-2.1.3-b1) has removed it. No deprecated warning generated when building marlin, TBD if they still have any effect.  
+> **Note 2**: The NOZZLE_TO_PROBE_OFFSET and setting in `Configuration.h` has been tweaked to my setup. you will need to adjust it before building Marlin. Alternatively, you can update the offset after flashing the firmware using the `M851` G-code command.
 
 ---
 

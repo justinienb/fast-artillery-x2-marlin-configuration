@@ -1734,8 +1734,8 @@
 //#define PROBE_OFFSET_XMAX  50   // (mm)
 //#define PROBE_OFFSET_YMIN -50   // (mm)
 //#define PROBE_OFFSET_YMAX  50   // (mm)
-#define PROBE_OFFSET_ZMIN  -2.5   // (mm)
-#define PROBE_OFFSET_ZMAX   2.5   // (mm)
+#define PROBE_OFFSET_ZMIN  -3     // (mm)
+#define PROBE_OFFSET_ZMAX   3     // (mm)
 
 // Enable the M48 repeatability test to test probe accuracy
 #define Z_MIN_PROBE_REPEATABILITY_TEST				// Think BTT firmware uses this
